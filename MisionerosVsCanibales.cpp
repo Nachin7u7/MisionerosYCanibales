@@ -20,3 +20,25 @@ void MoverAlBarco(Posicion * isla, Barco const* barco)
 }
 
 void MoverALaIsla(Posicion * isla, Barco const* barco)
+{
+    isla->canibales += barco->canibales;
+    isla->misioneros += barco->misioneros;
+}
+ 
+void imprimirIsla(Posicion const* posicion)
+{
+    printf("M:%d C:%d", posicion->misioneros, posicion->canibales);
+}
+ 
+void imprimirBarco(Barco const* barco)
+{
+    if( barco->ida )
+    {
+        printf("---->> \\_M:%d_C:%d_/       ", barco->misioneros, barco->canibales);
+    }
+    else
+    {
+        printf("       \\_M:%d_C:%d_/ <<----", barco->misioneros, barco->canibales);
+    }
+}
+ 
