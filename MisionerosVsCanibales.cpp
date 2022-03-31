@@ -64,4 +64,26 @@ void imprimirEstado(Posicion const* inicio, Posicion const* fin, Barco const* ba
     imprimirIsla(fin);
     printf("\n");
 }
+
+ 
+int main()
+{
+    Posicion inicio = { 3, 3 };
+    Posicion fin = { 0, 0 };
+ 
+    Barco const ida[] = { { 2, 0, 1 }, { 0, 2, 1 }, { 1, 1, 1 } };
+    Barco const vuelta[] = { { 1, 0, 0 }, { 1, 1, 0 } };
+	Barco const dummy = {0, 0, 1};
+ 
+    imprimirEstado(&inicio, &fin, &dummy);
+    while(1)
+    {
+        for( int i=0; i<3; i++ )
+        {
+            Barco const* barco = &ida[i];
+            if( viajeValido(&inicio, &fin, barco) )
+            {
+                MoverAlBarco(&inicio, barco);
+                imprimirEstado(&inicio, &fin, barco);
+                MoverALaIsla(&fin, barco);
  
