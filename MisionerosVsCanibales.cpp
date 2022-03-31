@@ -86,4 +86,28 @@ int main()
                 MoverAlBarco(&inicio, barco);
                 imprimirEstado(&inicio, &fin, barco);
                 MoverALaIsla(&fin, barco);
+          break;
+            }
+        }
+ 
+        if( fin.canibales == 3 && fin.misioneros == 3 )
+        {
+            imprimirEstado(&inicio, &fin, &dummy);
+            break;
+        }
+ 
+        for( int i=0; i<2; i++ )
+        {
+            Barco const* barco = &vuelta[i];
+            if( viajeValido(&fin, &inicio, barco) )
+            {
+                MoverAlBarco(&fin, barco);
+                imprimirEstado(&inicio, &fin, barco);
+                MoverALaIsla(&inicio, barco);
+                break;
+            }
+        }
+    }
+ 
+}
  
