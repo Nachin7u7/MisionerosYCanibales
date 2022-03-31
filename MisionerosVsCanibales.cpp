@@ -41,4 +41,27 @@ void imprimirBarco(Barco const* barco)
         printf("       \\_M:%d_C:%d_/ <<----", barco->misioneros, barco->canibales);
     }
 }
+
+int viajeValido(Posicion const* origen, Posicion const* destino, Barco const* barco)
+{
+    int toReturn = (origen->misioneros - barco->misioneros >= 0)
+                 && (origen->canibales - barco->canibales >= 0);
+ 
+    if( toReturn && origen->misioneros - barco->misioneros != 0 )
+        toReturn = (origen->canibales - barco->canibales <= origen->misioneros - barco->misioneros);
+    if( toReturn && destino->misioneros + barco->misioneros != 0 )
+        toReturn = (destino->canibales + barco->canibales <= destino->misioneros + barco->misioneros);
+ 
+    return toReturn;
+}
+ 
+void imprimirEstado(Posicion const* inicio, Posicion const* fin, Barco const* barco)
+{
+    imprimirIsla(inicio);
+    printf(" | ");
+    imprimirBarco(barco);
+    printf(" | ");
+    imprimirIsla(fin);
+    printf("\n");
+}
  
